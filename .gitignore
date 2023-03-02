@@ -1,18 +1,43 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+*.swp
+package-lock.json
+__pycache__
+.pytest_cache
+.env
+.venv
+*.egg-info
+.idea
 
-# Other files and folders
-.settings/
+# CDK asset staging directory
+.cdk.staging
+cdk.out
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# Mac OS X
+.DS_Store
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+**/.terraform.lock.hcl
+**/terraform.log
+
+# make sure any local keys are not uploaded!
+**/key.*
+**/*secrets.*
+
+# Crash log files
+crash.log
+**/.secrets/*
+**/customer_example/aws/bash/*
+**/customer_example/aws/var_files/*
+**/customer_example/gcp/bash/*
+**/customer_example/gcp/var_files/*
+**/customer_example/azure/bash/*
+**/customer_example/azure/var_files/*
+
+./cdk.context.json

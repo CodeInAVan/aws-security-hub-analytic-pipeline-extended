@@ -1,0 +1,86 @@
+{
+    "name": "security_hub_database_test_view3",
+    "gluedata": {
+        "catalog": "awsdatacatalog",
+        "columns": [
+            {
+                "name": "year_month_day",
+                "type": "varchar"
+            },
+            {
+                "name": "region",
+                "type": "varchar"
+            },
+            {
+                "name": "compliance_status",
+                "type": "varchar"
+            },
+            {
+                "name": "workflowstate",
+                "type": "varchar"
+            },
+            {
+                "name": "severity_label",
+                "type": "varchar"
+            },
+            {
+                "name": "cnt",
+                "type": "bigint"
+            }
+        ],
+        "originalSql": " SELECT \"date_format\"(\"from_iso8601_timestamp\"(updatedat), '%Y-%m-%d %H:00') year_month_day, region, compliance_status, workflowstate, severity_label, COUNT(DISTINCT title) as cnt FROM \"security_hub_database\".\"security-hub-crawled-securityhub-securityhub\" GROUP BY \"date_format\"(\"from_iso8601_timestamp\"(updatedat), '%Y-%m-%d %H:00'), region, compliance_status, workflowstate, severity_label",
+        "schema": "security_hub_database"
+    },
+    "quicksight_input_columns": [
+        {
+            "name": "year_month_day",
+            "type": "STRING"
+        },
+        {
+            "name": "region",
+            "type": "STRING"
+        },
+        {
+            "name": "compliance_status",
+            "type": "STRING"
+        },
+        {
+            "name": "workflowstate",
+            "type": "STRING"
+        },
+        {
+            "name": "severity_label",
+            "type": "STRING"
+        },
+        {
+            "name": "cnt",
+            "type": "INTEGER"
+        }
+    ],
+    "column_data": [
+        {
+            "name": "year_month_day",
+            "type": "string"
+        },
+        {
+            "name": "region",
+            "type": "string"
+        },
+        {
+            "name": "compliance_status",
+            "type": "string"
+        },
+        {
+            "name": "workflowstate",
+            "type": "string"
+        },
+        {
+            "name": "severity_label",
+            "type": "string"
+        },
+        {
+            "name": "cnt",
+            "type": "bigint"
+        }
+    ]
+}

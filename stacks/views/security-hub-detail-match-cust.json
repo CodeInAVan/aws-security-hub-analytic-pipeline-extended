@@ -1,0 +1,148 @@
+{
+    "name": "security-hub-detail-match-cust",
+    "gluedata": {
+        "originalSql": "SELECT\n  awsaccountid\n, compliance_associatedstandards_0_standardsid\n, generatorid\n, productfields_controlid\n, \"date_format\"(\"from_iso8601_timestamp\"(updatedat), '%Y-%m-%d') year_month_day\n, region\n, compliance_status\n, workflowstate\n, severity_label\n, COUNT(DISTINCT title) cnt\n, cust.col0 customer_matched_control\nFROM\n  (\"security_hub_database\".\"security-hub-crawled-securityhub-securityhub\" sec\nLEFT JOIN \"security_hub_database\".\"security-hub-controls-security_hub\" cust ON (sec.productfields_controlid = cust.col0))\nWHERE ((workflowstate = 'NEW') AND (recordstate = 'ACTIVE'))\nGROUP BY awsaccountid, compliance_associatedstandards_0_standardsid, generatorid, productfields_controlid, \"date_format\"(\"from_iso8601_timestamp\"(updatedat), '%Y-%m-%d'), region, compliance_status, workflowstate, severity_label, cust.col0\n",
+        "catalog": "awsdatacatalog",
+        "schema": "security_hub_database",
+        "columns": [
+            {
+                "name": "awsaccountid",
+                "type": "varchar"
+            },
+            {
+                "name": "compliance_associatedstandards_0_standardsid",
+                "type": "varchar"
+            },
+            {
+                "name": "generatorid",
+                "type": "varchar"
+            },
+            {
+                "name": "productfields_controlid",
+                "type": "varchar"
+            },
+            {
+                "name": "year_month_day",
+                "type": "varchar"
+            },
+            {
+                "name": "region",
+                "type": "varchar"
+            },
+            {
+                "name": "compliance_status",
+                "type": "varchar"
+            },
+            {
+                "name": "workflowstate",
+                "type": "varchar"
+            },
+            {
+                "name": "severity_label",
+                "type": "varchar"
+            },
+            {
+                "name": "cnt",
+                "type": "bigint"
+            },
+            {
+                "name": "customer_matched_control",
+                "type": "varchar"
+            }
+        ],
+        "owner": "<SET ME IN CODE>",
+        "runAsInvoker": false
+    },
+    "quicksight_input_columns": [
+        {
+            "name": "awsaccountid",
+            "type": "STRING"
+        },
+        {
+            "name": "compliance_associatedstandards_0_standardsid",
+            "type": "STRING"
+        },
+        {
+            "name": "generatorid",
+            "type": "STRING"
+        },
+        {
+            "name": "productfields_controlid",
+            "type": "STRING"
+        },
+        {
+            "name": "year_month_day",
+            "type": "STRING"
+        },
+        {
+            "name": "region",
+            "type": "STRING"
+        },
+        {
+            "name": "compliance_status",
+            "type": "STRING"
+        },
+        {
+            "name": "workflowstate",
+            "type": "STRING"
+        },
+        {
+            "name": "severity_label",
+            "type": "STRING"
+        },
+        {
+            "name": "cnt",
+            "type": "INTEGER"
+        },
+        {
+            "name": "customer_matched_control",
+            "type": "STRING"
+        }
+    ],
+    "column_data": [
+        {
+            "name": "awsaccountid",
+            "type": "string"
+        },
+        {
+            "name": "compliance_associatedstandards_0_standardsid",
+            "type": "string"
+        },
+        {
+            "name": "generatorid",
+            "type": "string"
+        },
+        {
+            "name": "productfields_controlid",
+            "type": "string"
+        },
+        {
+            "name": "year_month_day",
+            "type": "string"
+        },
+        {
+            "name": "region",
+            "type": "string"
+        },
+        {
+            "name": "compliance_status",
+            "type": "string"
+        },
+        {
+            "name": "workflowstate",
+            "type": "string"
+        },
+        {
+            "name": "severity_label",
+            "type": "string"
+        },
+        {
+            "name": "cnt",
+            "type": "bigint"
+        },
+        {
+            "name": "customer_matched_control",
+            "type": "string"
+        }
+    ]
+}
