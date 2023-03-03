@@ -1,6 +1,6 @@
 ## CLONE OF AWS Security Hub Analytic Pipeline (aws-samples/aws-security-hub-analytic-pipeline)
 
-Clone of aws-samples/aws-security-hub-analytic-pipeline. 
+Clone of aws-samples/aws-security-hub-analytic-pipeline. Based on this blog post: https://aws.amazon.com/blogs/security/how-to-build-a-multi-region-aws-security-hub-analytic-pipeline/ 
 
 Adjusted to NOT deploy AWS security hub aggregation and enablement, assumes this is already deployed.
 

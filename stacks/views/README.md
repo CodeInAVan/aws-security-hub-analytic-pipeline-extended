@@ -1,10 +1,9 @@
 ### VIEW CREATION
 
-json file contains the presto and hive versions of the data structure (borrowed from terraform examples!)
-
-data is used to create glue table based on view SQL
-
-note the SQL must be a single line and have escaped quotes e.g. \" not "
+Process :
+- create view manually in athena
+- edit python file to the view you want and set local creds so you can access the view 
+- run script, output is .json that contains view defenition in various formats for the cdk to consume
 
 ### helper script
 
@@ -16,24 +15,25 @@ edit it to set view name and then run
 $ python3 extract_view_2_json.py
 ```
 
-### Hive to Presto type conversion
+script runs
 
-Since complex types can be arbitrarily nested you need a proper parser to safely convert between Hive and Presto type names, [regular expressions aren't sufficient](https://stackoverflow.com/questions/546433/regular-expression-to-match-balanced-parentheses). Instead, here's a table you can use to convert between the two:
+```bash
+aws glue get-table --database-name={database} --region={region} --name {view}
+```
 
-Hive type | Presto type
----|---
-`string` | `varchar`
-`array<E>` | `array(E)`
-`map<K, V>` | `map(K, V)`
-`struct<F1:T1, F2:T2>` | `row(F1 T1, F2 T2)`
+resulting .json file contains the presto and hive versions of the data structure (borrowed from terraform examples!) for glue and modified versions for quicksight.
 
-All other types have the same name in Hive and Presto (if you find an exception please open a PR with a correction).
+Data is used to create glue table based on view SQL, please note the script also tries to convert presto types to the upper case types used in quicksight datasets (see quicksight_input_columns), it only handles varchar and bigint types, you will have to adjust it or manually fix any other types in the json.
 
+Note the originalSql must be a single line and have escaped quotes e.g. 
 
+```
+\" 
 
+not "
+```
 
-'''
-
+```
 {
   "name": "view_name",
   "gluedata": {
@@ -73,4 +73,4 @@ All other types have the same name in Hive and Presto (if you find an exception 
     }
   ]
 }
-'''
+```
